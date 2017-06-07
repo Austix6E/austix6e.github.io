@@ -2,6 +2,9 @@ function randomFloat(a, b){
     var r =  (Math.random() * (b - a) + a);
     return r;
 }
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 function Star(material, x, y, size){
     this.size = size;
@@ -29,11 +32,12 @@ function Starfield(size, width, height){
     this.width = width;
     this.height = height;
 
-    this.material = new THREE.LineBasicMaterial({color: 0xffffff});
+    var colors = [0x848484,0x777777,0xafafaf,0xffffff];
 
 
     this.init = function(){
         for(var i = 0; i < this.size; i++){
+            this.material = new THREE.LineBasicMaterial({color: colors[getRandomInt(0,3)]});
             this.stars.push(new Star(this.material, randomFloat(-this.width, this.width), randomFloat(-this.width, this.width), randomFloat(5, 100)));
             this.obj.add(this.stars[i].obj);
         }
@@ -67,10 +71,10 @@ function init(){
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
     camera.position.z = 50;
-    scene.background = new THREE.Color(0x000000);
+    scene.background = new THREE.Color(0x000000); //black background
     canvas = document.querySelector('#b canvas');
     
-    stars = new Starfield(100, 20, 20);
+    stars = new Starfield(25, 20, 20);
     render();
 }
 
