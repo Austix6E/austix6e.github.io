@@ -1,0 +1,13 @@
+body {
+    background-color: black;
+}
+h1 {
+
+}
+.absoluteCenterTitle {
+    color: red;
+    font-family: courier;
+    font-size: 160%;
+    text-align: center;
+    display:block;
+}
