@@ -7,10 +7,6 @@
 
 }
 
-* {
-    margin: 0;
-    padding: 0;
-}
 html, body {
     height: 100%;
     background: black;
@@ -160,4 +156,94 @@ html, body {
         transform: rotateY(720deg) rotateZ(-45deg) translate(-20px, 20px);
         opacity: 0;
     }
+}
+
+
+
+.column {
+    float: left;
+    width: 33.3333%;
+    margin-bottom: 8px;
+    padding: 0 16px;
+}
+
+/* Display the columns below each other instead of side by side on small screens */
+@media (max-width: 650px) {
+    .column {
+        width: 100%;
+        display: block;
+    }
+}
+
+/* Add some shadows to create a card effect */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Some left and right padding inside the container */
+.container {
+    padding: 0 16px;
+}
+
+/* Clear floats */
+.container::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.row .column{
+    box-sizing: border-box;
+}
+
+.row{
+    width: 100%;
+}
+
+.column{
+    background-clip:content-box;
+    background-color: #232323;
+    margin: 0 auto;
+    display: block;
+    float: inherit;
+}
+
+h2, a, p {
+    font-family: 'ConsolasXoloniumRegular';
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+    color: white;
+    
+}
+a {
+    display:block;
+    width : 100%;
+}
+
+.title {
+    color: grey;
+}
+
+.image{
+    height: 100%;
+    display: block;
+    padding: 16px;
+    margin: 0 auto;
+}
+
+.button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+.button:hover {
+    background-color: #555;
 }
