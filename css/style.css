@@ -18,10 +18,7 @@ html, body {
     transform: translate(-50%, -50%);
 }
 .centerHorizontal{
-    position: relative;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
+    margin: 0 auto;
 }
 .centerVertical{
     position: absolute;
@@ -91,7 +88,6 @@ html, body {
     opacity: 1;
     right: 0;
 }
-
 
 
 
