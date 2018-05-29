@@ -64,6 +64,23 @@ html, body {
     cursor: pointer;
 }
 
+.button_small {
+    font-family: 'ConsolasXoloniumRegular';
+    display: block;
+    margin: 0 auto;
+    border: 2px solid white;
+    border-radius: 7.5px;
+    background-color: transparent;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 18px;
+    padding: 7.5px;
+    padding-left:  20px;
+    padding-right: 20px;
+    width: auto;
+    cursor: pointer;
+}
+
 .button span {
     cursor: pointer;
     display: inline-block;
@@ -90,7 +107,16 @@ html, body {
 }
 
 
-
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    text-align: center;
+    color: white;
+}
+th, td {
+    padding: 5px;  
+    text-align: center;
+}
 
 
 

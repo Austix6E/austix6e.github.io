@@ -5,7 +5,7 @@
         <title>Austix6E</title>
 
         <link rel="stylesheet" href="../css/style.css">
-
+        
     </head>
 
     <body>
@@ -24,11 +24,30 @@
         
         <div class="centerHorizontal" style="text-align: center; margin-top: 20px; color:white;">
             <label style="display:inline-block;">$${Vo \over Vi} = \space$$</label>
-            <input type="number" name="Ratio"><br>
+            <input id="ratio" type="number" name="Ratio"><br>
         </div>
         
+        <button style="margin: 10 auto 10 auto;" class="button_small" onclick="calculateVoltageDivider();">Calculate</button>
+       
         
         
+        <div class="centerHorizontal">
+        
+            <table class="centerHorizontal" id="outTable">
+            </table>
+            
+        </div>
+        
+        <script>
+        
+            document.getElementById("ratio").addEventListener("keyup", function(event) {
+                event.preventDefault();
+                if (event.keyCode === 13) {
+                    calculateVoltageDivider();
+                }
+            });
+            
+        </script>
         <script src='calculators.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
         
@@ -40,4 +59,5 @@
 <p style="color:white; text-align: center;">
   When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
   $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
-</p>-->
+</p>
+-->
