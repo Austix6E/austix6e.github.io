@@ -18,8 +18,12 @@
 			<p style="text-align: center; font-size: 35px; margin-bottom: 100px;" class="consolas" >Voltage Divider</p>
         </div>
         
+		<div class="centerHorizontal" style="width:300px; background-color: white; padding: 20; border-radius: 20px">
+			<img style="width:100%" src="../assets/circuits/half_hpad_attenuator.png"/>
+		</div>
+        
         <p style="color:white; text-align: center;">
-            $${Vo \over Vi} = {R2 \over (R1 + R2)}$$
+            $${Vo \over Vi} = {1} - {2\cdot R1 \over 2\cdot R1 + R2}$$
         </p>
         
         <div class="centerHorizontal" style="text-align: center; margin-top: 20px; color:white;">
@@ -28,6 +32,7 @@
         </div>
         
         <button style="margin: 10 auto 10 auto;" class="button_small" onclick="calculateVoltageDivider();">Calculate</button>
+        <button style="margin: 10 auto 10 auto;" class="button_small" onclick="calculateHPad();">Calculate H-Pad</button>
        
         
         
