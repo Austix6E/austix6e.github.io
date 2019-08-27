@@ -1,12 +1,12 @@
-var E6 = [ 10 , 15 , 22 , 33 , 47 , 68 ]
+var E6 = [ 10 , 15 , 22 , 33 , 47 , 68 ];
 
 var E12 = [10 , 12 , 15 , 18 , 22 , 27 ,
-           33 , 39 , 47 , 56 , 68 , 82   ]
+           33 , 39 , 47 , 56 , 68 , 82   ];
 
 var E24 = [ 10 , 11 , 12 , 13 , 15 , 16 ,
             18 , 20 , 22 , 24 , 27 , 30 ,
             33 , 36 , 39 , 43 , 47 , 51 ,
-            56 , 62 , 68 , 75 , 82 , 91   ]
+            56 , 62 , 68 , 75 , 82 , 91   ];
 
 var E48 = [ 100 , 105 , 110 , 115 , 121 , 127 ,
             133 , 140 , 147 , 154 , 162 , 169 ,
@@ -15,7 +15,7 @@ var E48 = [ 100 , 105 , 110 , 115 , 121 , 127 ,
             316 , 332 , 348 , 365 , 383 , 402 ,
             422 , 442 , 464 , 487 , 511 , 536 ,
             562 , 590 , 619 , 649 , 681 , 715 ,
-            750 , 787 , 825 , 866 , 909 , 953   ]
+            750 , 787 , 825 , 866 , 909 , 953   ];
 
 var E96 = [ 100 , 102 , 105 , 107 , 110 , 113 , 115 , 118 ,
             121 , 124 , 127 , 130 , 133 , 137 , 140 , 143 ,
@@ -28,7 +28,7 @@ var E96 = [ 100 , 102 , 105 , 107 , 110 , 113 , 115 , 118 ,
             464 , 475 , 487 , 499 , 511 , 523 , 536 , 549 ,
             562 , 576 , 590 , 604 , 619 , 634 , 649 , 665 ,
             681 , 698 , 715 , 732 , 750 , 768 , 787 , 806 ,
-            825 , 845 , 866 , 887 , 909 , 931 , 953 , 976   ]
+            825 , 845 , 866 , 887 , 909 , 931 , 953 , 976   ];
 
 var E192 = [100 , 101 , 102 , 104 , 105 , 106 , 107 , 109 ,
             110 , 111 , 113 , 114 , 115 , 117 , 118 , 120 ,
@@ -53,7 +53,7 @@ var E192 = [100 , 101 , 102 , 104 , 105 , 106 , 107 , 109 ,
             681 , 690 , 698 , 706 , 715 , 723 , 732 , 741 ,
             750 , 759 , 768 , 777 , 787 , 796 , 806 , 816 ,
             825 , 835 , 845 , 856 , 866 , 876 , 887 , 898 ,
-            909 , 919 , 931 , 942 , 953 , 965 , 976 , 988   ]
+            909 , 919 , 931 , 942 , 953 , 965 , 976 , 988   ];
 
 function calculateVoltageDivider() { //only called from voltage_divider.html
     
@@ -88,12 +88,14 @@ function calculateVoltageDivider() { //only called from voltage_divider.html
     
 } 
 
-function calculateHPad() { //only called from voltage_divider.html
+function calculateBalTPad() { //only called from voltage_divider.html
     
     var table = document.getElementById("outTable");
     var searchValue = Number(document.getElementById("ratio").value);
+    var rOutValue = document.getElementById("rout").value;
+    var rInValue  = document.getElementById("rin") .value;
     
-    console.log(searchValue);
+    console.log(parseSizeFloat(rOutValue));
     
     table.innerHTML = "";
     var currentRow = table.insertRow(-1);
@@ -121,9 +123,75 @@ function calculateHPad() { //only called from voltage_divider.html
     
 } 
 
+function parseSizeFloat(input){
+    
+    //if(Number.isNaN(Number.parseFloat(input))) return null;
+    
+    console.log(input);
+    console.log(Number.parseFloat(input));
+    
+    var mul = 1;
+    if(input.toString().includes("k") || input.toString().includes("K")) mul = 1000;
+    else if(input.toString().includes("M")) mul = 1000000;
+    else if(input.toString().includes("m")) mul = .001;
+    else if(input.toString().includes("u") || input.toString().includes("U")) mul = .000001;
+    
+    return Number.parseFloat(input) * mul;
+    
+}
+
 function rgb(r, g, b){
   r = Math.floor(r);
   g = Math.floor(g);
   b = Math.floor(b);
   return ["rgb(",r,",",g,",",b,")"].join("");
 }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

@@ -1,0 +1,78 @@
+<html>
+    <head>
+
+        <meta charset="UTF-8">
+        <title>Austix6E</title>
+
+        <link rel="stylesheet" href="../css/style.css">
+        
+    </head>
+
+    <body>
+	
+		<div class="centerHorizontal">
+			<p style="text-align: center; font-size: 35px; margin-bottom: 5px; margin-top: 25px" class="consolas" >H-Pad divider </p>
+        </div>
+        
+		<div class="centerHorizontal" style="width:400px; background-color: white; padding: 10px; border-radius: 20px">
+			<img style="width:100%" src="../assets/circuits/balanced_t_pad.png"/>
+		</div>
+        
+        <div style="text-align: center;">
+            <div style="display: inline-block; text-align: left; color: white; font-size: 18px">
+                
+                <br>
+                \(R_i = \)
+                <input id="rin" type="text" style="width: 75px;" name="RIn">
+                \( \equiv {{(R_o + 2R_3) R_2\over R_o+2R_3 + R_2} + 2R_1} \equiv \text{input impedance} \)
+                <br><br>
+                
+                \(R_o = \)
+                <input id="rout" type="text" style="width: 75px;" name="ROut">
+                \( \equiv {{(R_i + 2R_1) R_2\over R_i+2R_1 + R_2} + 2R_3} \equiv \text{output impedance} \)
+                <br><br>
+                
+                \({V_o \over V_i} = \)
+                <input id="ratio" type="number" style="width: 75px;" name="Ratio">
+                \( = {1} - {2R_1 \over 2R_1 + R_2} \)
+                
+            </div>
+        </div>
+        
+        <br>
+        
+        <button style="margin: 10 auto 10 auto;" class="button_small" onclick="calculateBalTPad();">Calculate</button>
+       
+        
+        <div class="centerHorizontal">
+        
+            <table class="centerHorizontal" id="outTable">
+            </table>
+            
+        </div>
+        
+        
+        
+        <script>
+        
+            document.getElementById("ratio").addEventListener("keyup", function(event) {
+                event.preventDefault();
+                if (event.keyCode === 13) {
+                    calculateVoltageDivider();
+                }
+            });
+            
+        </script>
+        <script src='calculators.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+        
+    </body>
+
+</html>
+
+<!--
+<p style="color:white; text-align: center;">
+  When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+  $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
+</p>
+-->
