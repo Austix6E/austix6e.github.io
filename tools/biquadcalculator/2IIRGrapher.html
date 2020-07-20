@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+    <head>
+        <meta charset="utf-8">
+        <title>Biquad Plotter</title>
+        
+        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    </head>
+
+    <body>
+
+        <div id='ampGraph'><!-- Plotly chart will be drawn inside this DIV --></div>
+        <!--button type="button" onclick="testStuff()">Calc</button--> 
+        
+        <table style="width:100%">
+            <tr>
+                <th style="width:25%; text-align:right">Amplitude:</th>
+                <th style="width:40%"> <input style="width:100%" class="slider" type="range" min="-20" max="20" value="0" step=".1" id="amplitude"> </th>
+                <th style="width:25%; text-align:left" id="amplitudeText" >0db</th>
+            </tr>
+            <tr>
+                <th style="width:25%; text-align:right">Q:</th>
+                <th style="width:40%"> <input style="width:100%" class="slider" type="range" min=".05" max="10" value="1" step=".05" id="q"> </th>
+                <th style="width:25%; text-align:left" id="qText" >1</th>
+            </tr>
+            <tr>
+                <th style="width:25%; text-align:right">Frequency:</th>
+                <th style="width:40%"> <input style="width:100%" class="slider" type="range" min="0" max="3.30102999566398119521" value="2" step=".01" id="freq"> </th>
+                <th style="width:25%; text-align:left" id="freqText" >1000Hz</th>
+            </tr>
+            <tr>
+                <th style="width:25%; text-align:right">type:</th>
+                <th style="width:40%">
+                    <div> 
+                        <select name="type" id="filttype">
+                            <option value="peak" selected >peaking</option>
+                            <option value="highpass">highpass</option>
+                            <option value="ap">allpass</option>
+                        </select>
+                    </div>
+                </th>
+                <th style="width:25%; text-align:right"></th>
+            </tr>
+        </table>
+        
+    </body>
+
+	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src='plotscript.js'></script>
+    
+</html> 
