@@ -68,6 +68,12 @@ var nodes = [
 ];
 var edges = [
     
+    //catagory
+    { from: 'CA_Prof', to: 'PR_KFT'},
+    { from: 'CA_Prof', to: 'PR_KU'},
+    { from: 'CA_Prof', to: 'PR_KConnect'},
+    { from: 'CA_Prof', to: 'PR_KeyLOC'},
+    
     { from: 'CA_Per', to: 'PR_SpaceMarine'},
     { from: 'CA_Per', to: 'PR_AutoBlinds'},
     { from: 'CA_Per', to: 'PR_WallLight'},
@@ -82,11 +88,6 @@ var edges = [
     { from: 'CA_Per', to: 'PR_Cabnet'},
     { from: 'CA_Per', to: 'PR_TotName'},
     
-    //catagory
-    { from: 'CA_Prof', to: 'PR_KFT'},
-    { from: 'CA_Prof', to: 'PR_KU'},
-    { from: 'CA_Prof', to: 'PR_KConnect'},
-    { from: 'CA_Prof', to: 'PR_KeyLOC'},
     
     
     
@@ -200,9 +201,10 @@ var options = {
     width:'100%',
     height:'100%',
     layout: {
+        improvedLayout: true,
         hierarchical: {
             enabled: true,
-            nodeSpacing: 500,
+            nodeSpacing: 120,
             levelSeparation: 300,
             direction: 'lr',
             sortMethod: 'directed',
@@ -218,8 +220,9 @@ var options = {
     },
     nodes: {
         shape: "dot",
-        size: 20,
+        size: 30,
         borderWidth: 2,
+        fixed: true,
         font: {
             size: 24,
             color: "#ffffff",
@@ -244,8 +247,8 @@ var options = {
         width: 1,
         selectionWidth: 5,
     },
-//    physics:{
-//        enabled:true,
+    physics:{
+        enabled:false,
 //        hierarchicalRepulsion: {
 //          centralGravity: 0.0,
 //          springLength: 100,
@@ -254,6 +257,6 @@ var options = {
 //          damping: 0.09,
 //          avoidOverlap: 0
 //        },
-//    }
+    }
 };
 network = new vis.Network(container, data, options);
