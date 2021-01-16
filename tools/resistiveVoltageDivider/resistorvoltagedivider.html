@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>Austix6E</title>
 
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../../css/style.css">
         
     </head>
 
@@ -14,8 +14,8 @@
 			<p style="text-align: center; font-size: 35px; margin-bottom: 5px; margin-top: 25px" class="consolas" >Voltage Divider</p>
         </div>
         
-		<div class="centerHorizontal" style="width:400px; background-color: white; padding: 10px; border-radius: 20px">
-			<img style="width:100%" src="../assets/circuits/balanced_t_pad.png"/>
+		<div class="centerHorizontal" style="width:300px; background-color: white; padding: 10px; border-radius: 20px">
+			<img style="width:100%" src="rdiv.png"/>
 		</div>
         
         <div style="text-align: center;">
@@ -23,38 +23,35 @@
                 
                 <br>
                 \(R_1 = \)
-                <input id="r1" type="text" style="width: 75px;" name="RIn">
+                <input id="r1" onClick="this.select();" type="text" style="width: 75px;" name="r1">
                 <br><br>
                 
                 \(R_2 = \)
-                <input id="r2" type="text" style="width: 75px;" name="ROut">
+                <input id="r2" onClick="this.select();" type="text" style="width: 75px;" name="r2">
                 <br><br>
                 
                 \({V_o \over V_i} = \)
-                <input id="ratio" type="number" style="width: 75px;" name="Ratio">
-                 Assumes \(V_1 = 0V\)
+                <input id="ratio" onClick="this.select();" type="text" style="width: 75px;" name="Ratio">
                 <br><br>
 				
-                \(V_1 = \)
-                <input id="v1" type="text" style="width: 75px;" name="ROut">
-                <br><br>
-				
-                \(V_2 = \)
-                <input id="v1" type="text" style="width: 75px;" name="ROut">
-                <br><br>
-				
-                \(V_o = \)
-                <input id="v1" type="text" style="width: 75px;" name="ROut">
-                <br><br>
                 
             </div>
         </div>
         
         <br>
         
-        <button style="margin: 10 auto 10 auto;" class="button_small" onclick="calculateBalTPad();">Calculate</button>
-       
-        
+			<button style="margin: 10 auto 10 auto;" class="button_small" onclick="calculateVoltageDivider();">
+				Calculate for
+				<select id="range">
+				  <option value="E6"  >E6</option>
+				  <option value="E12" >E12</option>
+				  <option value="E24" >E24</option>
+				  <option value="E48" >E48</option>
+				  <option value="E96" >E96</option>
+				  <option value="E192">E192</option>
+				</select>
+			</button>
+		
         <div class="centerHorizontal">
         
             <table class="centerHorizontal" id="outTable">
@@ -74,16 +71,9 @@
             });
             
         </script>
-        <script src='calculators.js'></script>
+        <script src='script.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
         
     </body>
 
 </html>
-
-<!--
-<p style="color:white; text-align: center;">
-  When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
-  $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
-</p>
--->

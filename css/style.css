@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'ConsolasXoloniumRegular';
-    src: url('/assets/Font/Xolonium/xolonium-regular-webfont.woff2') format('woff2'),
-         url('/assets/Font/Xolonium/xolonium-regular-webfont.woff') format('woff');
+    src: url('fonts/xolonium-regular-webfont.woff2') format('woff2'),
+         url('fonts/xolonium-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -36,16 +36,32 @@ html, body {
 }
 
 .masterTitle{
-    
+
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
     top: 67%;
-    
+
     font-size: 400%;
 
     text-align: center;
     white-space: nowrap;
-    
+
+}
+
+
+.button_small {
+    font-family: 'ConsolasXoloniumRegular';
+    display: inline-block;
+    border: 2px solid white;
+    border-radius: 7.5px;
+    background-color: transparent;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 18px;
+    padding: 7.5px;
+    padding-left:  20px;
+    padding-right: 20px;
+    cursor: pointer;
 }
 
 .button {
@@ -60,52 +76,48 @@ html, body {
     padding: 7.5px;
     padding-left:  20px;
     padding-right: 20px;
-    width: 250px;
     cursor: pointer;
 }
 
-.button_small {
+.button_small:hover, .button:hover {
+	color:black;
+	background-color:white;
+	border-color:black;
+}
+
+/* .button span { */
+    /* cursor: pointer; */
+    /* display: inline-block; */
+    /* position: relative; */
+    /* transition: padding-right .1s; */
+/* } */
+/* .button span:after { */
+    /* content: '\00bb'; */
+    /* position: absolute; */
+    /* opacity: 0; */
+    /* top: 0; */
+    /* right: -20px; */
+    /* transition: .1s; */
+/* } */
+/* .button:hover span:after { */
+    /* opacity: 1; */
+    /* right: 0; */
+/* } */
+
+.collapsible {
     font-family: 'ConsolasXoloniumRegular';
-    display: block;
-    margin: 0 auto;
-    border: 2px solid white;
-    border-radius: 7.5px;
     background-color: transparent;
-    color: #FFFFFF;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid;
     text-align: center;
-    font-size: 18px;
-    padding: 7.5px;
-    padding-left:  20px;
-    padding-right: 20px;
-    width: auto;
-    cursor: pointer;
+    outline: none;
+    font-size: 28px;
+    padding: 0;
+    margin: 0;
 }
-
-.button span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: padding-right .1s;
-}
-
-.button span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: .1s;
-}
-
-.button:hover span {
-    padding-right: 25px;
-}
-
-.button:hover span:after {
-    opacity: 1;
-    right: 0;
-}
-
 
 table, th, td {
     border: 1px solid white;
@@ -114,7 +126,7 @@ table, th, td {
     color: white;
 }
 th, td {
-    padding: 5px;  
+    padding: 5px;
     text-align: center;
 }
 
@@ -259,7 +271,7 @@ th, td {
     padding: 0 16px;
 }
 
-/* Display the columns below each other instead of side by side on small screens 
+/* Display the columns below each other instead of side by side on small screens
 @media (max-width: 650px) {
     .column {
         width: 100%;
@@ -267,17 +279,17 @@ th, td {
     }
 }*/
 
-/* Add some shadows to create a card effect 
+/* Add some shadows to create a card effect
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }*/
 
-/* Some left and right padding inside the container 
+/* Some left and right padding inside the container
 .container {
     padding: 0 16px;
 }*/
 
-/* Clear floats 
+/* Clear floats
 .container::after, .row::after {
     content: "";
     clear: both;
@@ -306,7 +318,7 @@ h2, a, p {
     font-style: normal;
     text-align: center;
     color: white;
-    
+
 }
 a {
     display:block;

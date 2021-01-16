@@ -1,0 +1,77 @@
+<html lang="en">
+    <head>
+
+        <meta charset="UTF-8">
+        <title>Austix6E</title>
+
+        <link rel="stylesheet" href="../css/style.css">
+
+    </head>
+
+    <body>
+    
+        
+        <div style="margin-top: 10px; margin-bottom: 10px; width: 100%;">
+             <button class="collapsible" id="completed">Finished Product V</button>
+        </div>
+        <div id="completediv" style="color:white;">
+
+            <div style="display: flex; justify-content: center;">
+                <div style="display: inline-block; text-align: center;">
+                    <a href="https://lh3.googleusercontent.com/HHj9VgwNza9n2uvYxbfOIZ-ADUQnxFsHU3LH9i7ra_g6IIuAzns1kStwUvYARLiV2r04ZR75oIqKofc9N7hM8jfA1cN8ezFMI10WceJPmfevYLm13BPB5TL2Co2nt4qZp078JC9vAR4=w2400?source=screenshot.guru"> 
+                        <img src="https://lh3.googleusercontent.com/HHj9VgwNza9n2uvYxbfOIZ-ADUQnxFsHU3LH9i7ra_g6IIuAzns1kStwUvYARLiV2r04ZR75oIqKofc9N7hM8jfA1cN8ezFMI10WceJPmfevYLm13BPB5TL2Co2nt4qZp078JC9vAR4" /> 
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div style="margin-top: 10px; margin-bottom: 10px; width: 100%;">
+             <button class="collapsible" id="about">About ></button>
+        </div>
+        <div id="aboutDiv" style="color:white; display:none">
+
+            <div style="display: flex; justify-content: center;">
+                <div style="display: inline-block; text-align: center;">
+                
+                </div>
+            </div>
+
+        </div>
+        
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.6.1/jquery.lettering.min.js'></script>
+        <script>
+            
+            var bComplete = document.getElementById("completed");
+            bComplete.addEventListener("click", function(){
+                var temp = document.getElementById("aboutDiv");
+                if(temp.style.display != "block"){
+                    temp.style.display = "block"
+                    bComplete.innerHTML = "Finished Product V"
+                }
+                else{
+                    temp.style.display = "none";
+                    bComplete.innerHTML = "Finished Product >"
+                }
+            });
+            
+            var bAbout = document.getElementById("about");
+            bAbout.addEventListener("click", function(){
+                var temp = document.getElementById("aboutDiv");
+                if(temp.style.display == "block"){
+                    temp.style.display = "none";
+                    bAbout.innerHTML = "About >"
+                }
+                else{
+                    temp.style.display = "block"
+                    bAbout.innerHTML = "About V"
+                }
+            });
+        
+            
+        </script>
+        
+    </body>
+
+</html>
