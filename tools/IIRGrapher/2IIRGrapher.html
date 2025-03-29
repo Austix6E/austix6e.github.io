@@ -17,17 +17,17 @@
         <table style="width:100%">
             <tr>
                 <th style="width:25%; text-align:right">Amplitude:</th>
-                <th style="width:40%"> <input style="width:100%" class="slider" type="range" min="-20" max="20" value="0" step=".1" id="amplitude"> </th>
+                <th style="width:40%"> <input autocomplete="off" style="width:100%" class="slider" type="range" min="-20" max="20" value="0" step=".1" id="amplitude"> </th>
                 <th style="width:25%; text-align:left" id="amplitudeText" >0db</th>
             </tr>
             <tr>
                 <th style="width:25%; text-align:right">Q:</th>
-                <th style="width:40%"> <input style="width:100%" class="slider" type="range" min=".05" max="10" value="1" step=".05" id="q"> </th>
+                <th style="width:40%"> <input autocomplete="off" style="width:100%" class="slider" type="range" min=".05" max="10" value="1" step=".05" id="q"> </th>
                 <th style="width:25%; text-align:left" id="qText" >1</th>
             </tr>
             <tr>
                 <th style="width:25%; text-align:right">Frequency:</th>
-                <th style="width:40%"> <input style="width:100%" class="slider" type="range" min="0" max="3.30102999566398119521" value="2" step=".01" id="freq"> </th>
+                <th style="width:40%"> <input autocomplete="off" style="width:100%" class="slider" type="range" min="0" max="3.30102999566398119521" value="2" step=".01" id="freq"> </th>
                 <th style="width:25%; text-align:left" id="freqText" >1000Hz</th>
             </tr>
             <tr>
@@ -44,10 +44,41 @@
                 <th style="width:25%; text-align:right"></th>
             </tr>
         </table>
+        <table style="width:100%">
+            <tr>
+                <th style="width:25%; text-align:right">A1:</th>
+                <th style="width:40%; text-align:left"><input autocomplete="off" style="width:250px" class="Text" value="asdf" id="A1T"></th>
+            </tr>
+            <tr>
+                <th style="width:25%; text-align:right">A2:</th>
+                <th style="width:40%; text-align:left"><input autocomplete="off" style="width:250px" class="Text" value="asdf" id="A2T"></th>
+            </tr>
+            <tr>
+                <th style="width:25%; text-align:right">B0:</th>
+                <th style="width:40%; text-align:left"><input autocomplete="off" style="width:250px" class="Text" value="asdf" id="B0T"></th>
+            </tr>
+            <tr>
+                <th style="width:25%; text-align:right">B1:</th>
+                <th style="width:40%; text-align:left"><input autocomplete="off" style="width:250px" class="Text" value="asdf" id="B1T"></th>
+            </tr>
+            <tr>
+                <th style="width:25%; text-align:right">B2:</th>
+                <th style="width:40%; text-align:left"><input autocomplete="off" style="width:250px" class="Text" value="asdf" id="B2T"></th>
+            </tr>
+            <tr>
+                <th style="width:25%; text-align:right">Sample Rate:</th>
+                <th style="width:40%; text-align:left"><input autocomplete="off" style="width:250px" class="Text" value="48000" id="SRT"></th>
+            </tr>
+            <tr>
+                <th style="width:25%; text-align:right"></th>
+                <th style="width:25%; text-align:left"><button type="button" onclick="Calculate();">Plot biquad</button></th>
+            </tr>
+        </table>
+		
         
     </body>
 
-	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+	<script src='https://cdn.plot.ly/plotly-3.0.1.min.js'></script>
     <script src='plotscript.js'></script>
     
 </html> 

@@ -1,21 +1,65 @@
-var layout1 = {
-  xaxis: {
-    type: 'log',
-    autorange: true
-  },
-  xaxis2: {
-    type: 'log',
-    autorange: true
-  },
-  yaxis: {
-    range:[-21,21]
-  },
-  yaxis2: {
-    range:[-185,185]
-  },
-  grid: {rows: 1, columns: 2, pattern: 'independent'}
-};
+const template = {
+        font: {
+            color: "#f2f5fa"
+        },
+        paper_bgcolor: "rgb(17,17,17)",
+        plot_bgcolor: "rgb(17,17,17)",
+        xaxis: {
+            gridcolor: "#283442",
+            linecolor: "#506784",
+            title: {
+                standoff: 15
+            },
+            zerolinecolor: "#283442",
+            zerolinewidth: 2,
+			type: "log"
+        },        
+		xaxis2: {
+            gridcolor: "#283442",
+            linecolor: "#506784",
+            title: {
+                standoff: 15
+            },
+            zerolinecolor: "#283442",
+            zerolinewidth: 2,
+			type: "log"
+        },
+        yaxis: {
+            gridcolor: "#283442",
+            linecolor: "#506784",
+            title: {
+                standoff: 15
+            },
+            zerolinecolor: "#283442",
+            zerolinewidth: 2,
+			range:[-21,21]
+        },
+        yaxis2: {
+            gridcolor: "#283442",
+            linecolor: "#506784",
+            title: {
+                standoff: 15
+            },
+            zerolinecolor: "#283442",
+            zerolinewidth: 2,
+			range:[-185,185]
+        },
+		grid: {
+			rows: 2, 
+			columns: 1, 
+			shared_xaxes:"True"
+		},
+}
+
+var SRate = 48000
 var bq = {a0 : 0, a1 : 0, a2 : 0, b0 : 0, b1 : 0, b2 : 0};
+
+var b0t = document.getElementById("B0T");
+var b1t = document.getElementById("B1T");
+var b2t = document.getElementById("B2T");
+var a1t = document.getElementById("A1T");
+var a2t = document.getElementById("A2T");
+var srt = document.getElementById("SRT");
 
 function FG_CalculateAllpass(f, q, sr, order){
     
@@ -130,7 +174,13 @@ function calculateAmpAndPhaseAtF(bq, f, sr){
 }
 
 function plotBQ(bq, sr, pts, start, end){
-        
+    
+	b0t.value = bq.b0/bq.a0;
+	b1t.value = bq.b1/bq.a0;
+	b2t.value = bq.b2/bq.a0;
+	a1t.value = bq.a1/bq.a0;
+	a2t.value = bq.a2/bq.a0;
+	
     var trace1 = {
         x: [],
         y: [],
@@ -161,16 +211,16 @@ function plotBQ(bq, sr, pts, start, end){
     }
 
     //return [trace1,trace2];
-    Plotly.newPlot('ampGraph', [trace1,trace2], layout1);
+    Plotly.newPlot('ampGraph', [trace1,trace2],  template);
     //Plotly.newPlot('phaseGraph', [trace2], layout2);
 }
 
 function testStuff(){
     a = Math.random()*20-10;
-    bs = FG_CalculatePeakingBiquad(1000,a,1,96000);
-    //am = calculateAmpAndPhaseAtF(bs,1000,96000);
+    bs = FG_CalculatePeakingBiquad(1000,a,1,SRate);
+    //am = calculateAmpAndPhaseAtF(bs,1000,SRate);
     
-    bla = plotBQ(bs, 96000, 1000, 10, 20000);
+    bla = plotBQ(bs, SRate, 1000, 10, 20000);
    
     Plotly.newPlot('myDiv', [bla], layout);
     
@@ -188,27 +238,28 @@ var ft = document.getElementById("freqText");
 
 var sel = document.getElementById("filttype");
 
+
 as.oninput = function() {
     
     at.innerHTML = as.value+"db";
     
     switch(sel.options.selectedIndex){
         case 0:
-            bs = FG_CalculatePeakingBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,96000);
+            bs = FG_CalculatePeakingBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
         break;
         case 1:
-            bs = FG_CalculateHighPass(Math.pow(10,1+parseFloat(fs.value)),qs.value,96000);
+            bs = FG_CalculateHighPass(Math.pow(10,1+parseFloat(fs.value)),qs.value,SRate);
         break;
         case 2:
-            bs = FG_CalculateAllpass(Math.pow(10,1+parseFloat(fs.value)),qs.value,96000,2);
+            bs = FG_CalculateAllpass(Math.pow(10,1+parseFloat(fs.value)),qs.value,SRate,2);
         break;
         case 3:
 
         break;
     }
-    //am = calculateAmpAndPhaseAtF(bs,1000,96000);
+    //am = calculateAmpAndPhaseAtF(bs,1000,SRate);
 
-    bla = plotBQ(bs, 96000, 1000, 10, 20000);
+    bla = plotBQ(bs, SRate, 1000, 10, 20000);
 
     bla = null;
     
@@ -219,21 +270,21 @@ qs.oninput = function() {
     
     switch(sel.options.selectedIndex){
         case 0:
-            bs = FG_CalculatePeakingBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,96000);
+            bs = FG_CalculatePeakingBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
         break;
         case 1:
-            bs = FG_CalculateHighPass(Math.pow(10,1+parseFloat(fs.value)),qs.value,96000);
+            bs = FG_CalculateHighPass(Math.pow(10,1+parseFloat(fs.value)),qs.value,SRate);
         break;
         case 2:
-            bs = FG_CalculateAllpass(Math.pow(10,1+parseFloat(fs.value)),qs.value,96000,2);
+            bs = FG_CalculateAllpass(Math.pow(10,1+parseFloat(fs.value)),qs.value,SRate,2);
         break;
         case 3:
 
         break;
     }
-    //am = calculateAmpAndPhaseAtF(bs,1000,96000);
+    //am = calculateAmpAndPhaseAtF(bs,1000,SRate);
 
-    bla = plotBQ(bs, 96000, 1000, 10, 20000);
+    bla = plotBQ(bs, SRate, 1000, 10, 20000);
 
     //Plotly.newPlot('ampGraph', [bla[0]], layout);
     //Plotly.newPlot('phaseGraph', [bla[1]], layout);
@@ -247,21 +298,21 @@ fs.oninput = function() {
     
     switch(sel.options.selectedIndex){
         case 0:
-            bs = FG_CalculatePeakingBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,96000);
+            bs = FG_CalculatePeakingBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
         break;
         case 1:
-            bs = FG_CalculateHighPass(Math.pow(10,1+parseFloat(fs.value)),qs.value,96000);
+            bs = FG_CalculateHighPass(Math.pow(10,1+parseFloat(fs.value)),qs.value,SRate);
         break;
         case 2:
-            bs = FG_CalculateAllpass(Math.pow(10,1+parseFloat(fs.value)),qs.value,96000,2);
+            bs = FG_CalculateAllpass(Math.pow(10,1+parseFloat(fs.value)),qs.value,SRate,2);
         break;
         case 3:
 
         break;
     }
-    //am = calculateAmpAndPhaseAtF(bs,1000,96000);
+    //am = calculateAmpAndPhaseAtF(bs,1000,SRate);
 
-    bla = plotBQ(bs, 96000, 1000, 10, 20000);
+    bla = plotBQ(bs, SRate, 1000, 10, 20000);
 
     //Plotly.newPlot('ampGraph', [bla[0]], layout);
     //Plotly.newPlot('phaseGraph', [bla[1]], layout);
@@ -269,42 +320,45 @@ fs.oninput = function() {
     bla = null;
     
 }
-
-
-at.innerHTML = as.value+"db";
-
-bs = FG_CalculatePeakingBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,96000);
-//am = calculateAmpAndPhaseAtF(bs,1000,96000);
-
-bla = plotBQ(bs, 96000, 1000, 10, 20000);
-
-//Plotly.newPlot('ampGraph', [bla[0]], layout);
-//Plotly.newPlot('phaseGraph', [bla[1]], layout);
-
-bla = null;
-
 function selectionchanged(){    
    
    console.log(sel.options.selectedIndex);
    
     switch(sel.options.selectedIndex){
         case 0:
-            bs = FG_CalculatePeakingBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,96000);
+            bs = FG_CalculatePeakingBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
         break;
         case 1:
-            bs = FG_CalculateHighPass(Math.pow(10,1+parseFloat(fs.value)),qs.value,96000);
+            bs = FG_CalculateHighPass(Math.pow(10,1+parseFloat(fs.value)),qs.value,SRate);
         break;
         case 2:
-            bs = FG_CalculateAllpass(Math.pow(10,1+parseFloat(fs.value)),qs.value,96000,2);
+            bs = FG_CalculateAllpass(Math.pow(10,1+parseFloat(fs.value)),qs.value,SRate,2);
         break;
         case 3:
 
         break;
     }
    
-    bla = plotBQ(bs, 96000, 1000, 10, 20000);
+    bla = plotBQ(bs, SRate, 1000, 10, 20000);
 
     bla = null;
 }
 
+at.innerHTML = as.value+"db";
+bs = FG_CalculatePeakingBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
+bla = plotBQ(bs, SRate, 1000, 10, 20000);
+bla = null;
+sel.selectedIndex = 0;
+
 sel.addEventListener("change", selectionchanged, false);
+
+async function Calculate(){
+	bq.a0 = 1;
+	bq.a1 = parseFloat(a1t.value);
+	bq.a2 = parseFloat(a2t.value);
+	bq.b0 = parseFloat(b0t.value);
+	bq.b1 = parseFloat(b1t.value);
+	bq.b2 = parseFloat(b2t.value);
+	SRate = parseInt(srt.value);
+    plotBQ(bq, SRate, 1000, 10, 20000);
+}
