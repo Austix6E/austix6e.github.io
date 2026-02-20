@@ -22,22 +22,23 @@
             </tr>
             <tr>
                 <th style="width:25%; text-align:right">Q:</th>
-                <th style="width:40%"> <input autocomplete="off" style="width:100%" class="slider" type="range" min=".05" max="10" value="1" step=".05" id="q"> </th>
+                <th style="width:40%"> <input autocomplete="off" style="width:100%" class="slider" type="range" min=".05" max="10" value=".7" step=".05" id="q"> </th>
                 <th style="width:25%; text-align:left" id="qText" >1</th>
             </tr>
             <tr>
                 <th style="width:25%; text-align:right">Frequency:</th>
-                <th style="width:40%"> <input autocomplete="off" style="width:100%" class="slider" type="range" min="0" max="3.30102999566398119521" value="2" step=".01" id="freq"> </th>
-                <th style="width:25%; text-align:left" id="freqText" >1000Hz</th>
+                <th style="width:40%"> <input autocomplete="off" style="width:100%" class="slider" type="range" min="0" max="3.30102999566398119521" value="1.20411998265592478085" step=".01" id="freq"> </th>
+                <th style="width:25%; text-align:left" id="freqText" >160Hz</th>
             </tr>
             <tr>
                 <th style="width:25%; text-align:right">type:</th>
                 <th style="width:40%">
                     <div> 
                         <select name="type" id="filttype">
-                            <option value="peak" selected >peaking</option>
+                            <option value="peak">peaking</option>
                             <option value="highpass">highpass</option>
                             <option value="ap">allpass</option>
+                            <option value="notch" selected>notch</option>
                         </select>
                     </div>
                 </th>

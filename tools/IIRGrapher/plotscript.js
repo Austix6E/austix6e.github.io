@@ -32,7 +32,7 @@ const template = {
             },
             zerolinecolor: "#283442",
             zerolinewidth: 2,
-			range:[-21,21]
+			range:[-60,20]
         },
         yaxis2: {
             gridcolor: "#283442",
@@ -150,6 +150,26 @@ function FG_CalculatePeakingBiquad(f, a, q, sr){
 
 }
 
+function FG_CalculateNotchBiquad(f,a,q,sr){
+    
+    w0 = (2 * 3.14159265359 * f)/sr;
+
+    A = Math.pow(10,(a/40));
+    alpha = Math.sin(w0)/(2*q);
+
+    
+    a0 =  1 + alpha;
+    b0 = 1/a0;
+    b1 = (-2 * Math.cos(w0)      )/a0;
+    b2 = 1/a0;
+    a1 = (-2 * Math.cos(w0)      )/a0;
+    a2 = ( 1 - alpha )/a0;
+    a0 = 1;
+    
+    return {a0: a0, a1: a1, a2: a2, b0: b0, b1: b1, b2: b2};
+
+}
+
 function calculateAmpAndPhaseAtF(bq, f, sr){
     
     w = (3.1415926*2*f)/sr;
@@ -254,7 +274,9 @@ as.oninput = function() {
             bs = FG_CalculateAllpass(Math.pow(10,1+parseFloat(fs.value)),qs.value,SRate,2);
         break;
         case 3:
-
+            bs = FG_CalculateNotchBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
+            break;
+        case 4:
         break;
     }
     //am = calculateAmpAndPhaseAtF(bs,1000,SRate);
@@ -279,7 +301,9 @@ qs.oninput = function() {
             bs = FG_CalculateAllpass(Math.pow(10,1+parseFloat(fs.value)),qs.value,SRate,2);
         break;
         case 3:
-
+            bs = FG_CalculateNotchBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
+            break;
+        case 4:
         break;
     }
     //am = calculateAmpAndPhaseAtF(bs,1000,SRate);
@@ -307,7 +331,9 @@ fs.oninput = function() {
             bs = FG_CalculateAllpass(Math.pow(10,1+parseFloat(fs.value)),qs.value,SRate,2);
         break;
         case 3:
-
+            bs = FG_CalculateNotchBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
+            break;
+        case 4:
         break;
     }
     //am = calculateAmpAndPhaseAtF(bs,1000,SRate);
@@ -335,6 +361,9 @@ function selectionchanged(){
             bs = FG_CalculateAllpass(Math.pow(10,1+parseFloat(fs.value)),qs.value,SRate,2);
         break;
         case 3:
+            bs = FG_CalculateNotchBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
+            break;
+        case 4:
 
         break;
     }
@@ -344,11 +373,11 @@ function selectionchanged(){
     bla = null;
 }
 
-at.innerHTML = as.value+"db";
-bs = FG_CalculatePeakingBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
-bla = plotBQ(bs, SRate, 1000, 10, 20000);
+// at.innerHTML = as.value+"db";
+// bs = FG_CalculatePeakingBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
+bla = plotBQ({a0: 1, a1: 0, a2: 0, b0: 1, b1: 0, b2: 0}, SRate, 1000, 10, 20000);
 bla = null;
-sel.selectedIndex = 0;
+// sel.selectedIndex = 0;
 
 sel.addEventListener("change", selectionchanged, false);
 
