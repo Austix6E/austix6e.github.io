@@ -130,7 +130,18 @@ th, td {
     text-align: center;
 }
 
-
+.log-error {
+    color: red;
+    font-family: Consolas;
+}
+.log-log{
+    color: white;
+    font-family: Consolas;
+}
+.log-info{
+    color: cyan;
+    font-family: Consolas;
+}
 
 
 

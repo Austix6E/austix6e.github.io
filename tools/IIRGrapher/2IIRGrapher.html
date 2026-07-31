@@ -17,7 +17,7 @@
         <table style="width:100%">
             <tr>
                 <th style="width:25%; text-align:right">Amplitude:</th>
-                <th style="width:40%"> <input autocomplete="off" style="width:100%" class="slider" type="range" min="-20" max="20" value="0" step=".1" id="amplitude"> </th>
+                <th style="width:40%"> <input autocomplete="off" style="width:100%" class="slider" type="range" min="-20" max="100" value="0" step=".1" id="amplitude"> </th>
                 <th style="width:25%; text-align:left" id="amplitudeText" >0db</th>
             </tr>
             <tr>
@@ -38,7 +38,8 @@
                             <option value="peak">peaking</option>
                             <option value="highpass">highpass</option>
                             <option value="ap">allpass</option>
-                            <option value="notch" selected>notch</option>
+                            <option value="notch">notch</option>
+                            <option value="hs" selected>hshelf</option>
                         </select>
                     </div>
                 </th>

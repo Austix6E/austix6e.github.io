@@ -14,7 +14,7 @@
 			<p style="text-align: center; font-size: 35px; margin-bottom: 5px; margin-top: 25px" class="consolas" >Voltage Divider</p>
         </div>
         
-		<div class="centerHorizontal" style="width:300px; background-color: white; padding: 10px; border-radius: 20px">
+		<div class="centerHorizontal" style="width:200px; background-color: white; padding: 10px; border-radius: 20px">
 			<img style="width:100%" src="rdiv.png"/>
 		</div>
         
@@ -23,7 +23,7 @@
                 
                 <br>
                 \(R_1 = \)
-                <input id="r1" onClick="this.select();" type="text" style="width: 75px;" name="r1">
+                <input id="r1" onClick="this.select();" type="text" style="width: 75px;" name="r1" value="10k">
                 <br><br>
                 
                 \(R_2 = \)
@@ -31,32 +31,27 @@
                 <br><br>
                 
                 \({V_o \over V_i} = \)
-                <input id="ratio" onClick="this.select();" type="text" style="width: 75px;" name="Ratio">
+                <input id="ratio" onClick="this.select();" type="text" style="width: 75px;" name="Ratio" value=".234">
                 <br><br>
 				
-                
             </div>
+
+
         </div>
         
-        <br>
-        
-			<button style="margin: 10 auto 10 auto;" class="button_small" onclick="calculateVoltageDivider();">
-				Calculate for
-				<select id="range">
-				  <option value="E6"  >E6</option>
-				  <option value="E12" >E12</option>
-				  <option value="E24" >E24</option>
-				  <option value="E48" >E48</option>
-				  <option value="E96" >E96</option>
-				  <option value="E192">E192</option>
-				</select>
-			</button>
+        <div style="display: flex; justify-content: center;">
+            <div style="display: inline-block; text-align: center;">
+                <button style="margin: 10 auto 10 auto;" class="button_small" onclick="calculateVoltageDivider();">
+                    Calculate
+                </button>
+                <button  class="button_small" style="margin: 10 auto 10 auto;" onclick="document.getElementById(&#34;log&#34;).innerHTML = &#34;&#34;;">
+                    <span >CLS</span>
+                </button>
+            </div>
+        </div>
 		
-        <div class="centerHorizontal">
-        
-            <table class="centerHorizontal" id="outTable">
-            </table>
-            
+        <div id="log-container" style="text-align:left; flex: 1 1 100%; max-width:100%;">
+            <pre id="log"></pre>
         </div>
         
         

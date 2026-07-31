@@ -32,7 +32,8 @@ const template = {
             },
             zerolinecolor: "#283442",
             zerolinewidth: 2,
-			range:[-60,20]
+			range:[-60,20],
+            autorange: true
         },
         yaxis2: {
             gridcolor: "#283442",
@@ -42,7 +43,8 @@ const template = {
             },
             zerolinecolor: "#283442",
             zerolinewidth: 2,
-			range:[-185,185]
+			range:[-185,185],
+            autorange: true
         },
 		grid: {
 			rows: 2, 
@@ -112,6 +114,44 @@ function FG_CalculateHighPass(f, q, sr){
     a0 =   1+a;
     a1 =  -2*cw;
     a2 =  (1-a);
+    
+    a1 = a1 / a0;
+    a2 = a2 / a0;
+    b0 = b0 / a0;
+    b1 = b1 / a0;
+    b2 = b2 / a0;
+    a0 = 1;
+    
+    return {a0: a0, a1: a1, a2: a2, b0: b0, b1: b1, b2: b2};
+}
+
+function FG_CalculateHighShelf(f,a,q,sr){
+    
+    w = (2*3.1415926*f/sr);
+    am = Math.pow(10,a/40);
+    a = ((Math.sin(w)/2)*Math.sqrt((am+(1/am))*((1/q) - 1) + 2)) * Math.sqrt(am) * 2;//
+    cw = Math.cos(w);
+      
+    a0 =  ((am + 1) - (am - 1) * cw + a);
+    a1 = ((am - 1) - (am + 1) * cw) * 2;
+    a2 = ((am + 1) - (am - 1) * cw - a);
+    b0 = ((am + 1) + (am - 1) * cw + a) *am;
+    b1 = ((am - 1) + (am + 1) * cw) * -2 *am;
+    b2 = ((am + 1) + (am - 1) * cw - a) *am;
+    
+    // a0 = ((am + 1) - (am - 1) * cw + a);
+    // a1 = (am - 1)*2 - (am + 1) * cw;
+    // a2 = ((am + 1) - (am - 1) * cw - a);
+    // b0 = ((am + 1) + (am - 1) * cw + a) *am;
+    // b1 = ((am - 1) - (am + 1) * cw) * -2 *am;
+    // b2 = ((am + 1) + (am - 1) * cw - a) *am;
+    
+    // a0 =  ((am + 1) + (am - 1) * cw + a);
+    // a1 = ((am - 1) + (am + 1) * cw) * -2;
+    // a2 = ((am + 1) + (am - 1) * cw - a);
+    // b0 = ((am + 1) - (am - 1) * cw + a) *am;
+    // b1 = ((am - 1) - (am + 1) * cw) * 2 *am;
+    // b2 = ((am + 1) - (am - 1) * cw - a) *am;
     
     a1 = a1 / a0;
     a2 = a2 / a0;
@@ -277,7 +317,8 @@ as.oninput = function() {
             bs = FG_CalculateNotchBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
             break;
         case 4:
-        break;
+            bs = FG_CalculateHighShelf(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
+            break;
     }
     //am = calculateAmpAndPhaseAtF(bs,1000,SRate);
 
@@ -304,7 +345,8 @@ qs.oninput = function() {
             bs = FG_CalculateNotchBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
             break;
         case 4:
-        break;
+            bs = FG_CalculateHighShelf(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
+            break;
     }
     //am = calculateAmpAndPhaseAtF(bs,1000,SRate);
 
@@ -334,7 +376,8 @@ fs.oninput = function() {
             bs = FG_CalculateNotchBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
             break;
         case 4:
-        break;
+            bs = FG_CalculateHighShelf(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
+            break;
     }
     //am = calculateAmpAndPhaseAtF(bs,1000,SRate);
 
@@ -364,8 +407,8 @@ function selectionchanged(){
             bs = FG_CalculateNotchBiquad(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
             break;
         case 4:
-
-        break;
+            bs = FG_CalculateHighShelf(Math.pow(10,1+parseFloat(fs.value)),as.value,qs.value,SRate);
+            break;
     }
    
     bla = plotBQ(bs, SRate, 1000, 10, 20000);

@@ -1,4 +1,6 @@
-const simplex = new SimplexNoise();
+import {createNoise3D} from 'https://cdn.jsdelivr.net/npm/simplex-noise@4.0.3/dist/esm/simplex-noise.js';
+
+const simplex = createNoise3D();
 
 const IMG_PATH = 'https://austix6e.github.io/assets/logo2.png';
 
@@ -43,7 +45,7 @@ const getRGBA = (x, y, imageData) => {
 const getAngle = () => {
 	const angle = (PI2 * Math.random());
 
-	return angleFF = angle - (angle % FF);
+	return angle - (angle % FF);
 };
 
 const getImageData = (ctx, image) => {
@@ -126,7 +128,7 @@ class Trail {
 		}
 
 		const scale = isInside ? 0.0005 : 0.0006;
-		const n = simplex.noise3D(x * scale, y * scale, phase);
+		const n = simplex(x * scale, y * scale, phase);
 		const hue = 220;// + (50 * n);
 		if(!isInside) lightness = 20 + 60 * n;
 		
